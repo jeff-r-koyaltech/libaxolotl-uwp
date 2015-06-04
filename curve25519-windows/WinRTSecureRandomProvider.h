@@ -1,5 +1,5 @@
 #pragma once
-namespace Curve25519WinRT {
+namespace curve25519_windows {
 	class WinRTSecureRandomProvider
 	{
 	public:

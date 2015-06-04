@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "WinRTSecureRandomProvider.h"
 
-using namespace Curve25519WinRT;
+using namespace curve25519_windows;
 
 WinRTSecureRandomProvider::WinRTSecureRandomProvider()
 {

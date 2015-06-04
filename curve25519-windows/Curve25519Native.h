@@ -10,7 +10,7 @@
 
 using namespace Platform;
 
-namespace Curve25519WinRT
+namespace curve25519_windows
 {
 	//ENTRY POINT: This class is activatable in other C# projects. Access Curve25519 through this.
 	public ref class Curve25519Native sealed

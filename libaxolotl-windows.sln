@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaxolotl-windows", "libaxolotl-windows.vcxproj", "{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "curve25519-windows", "curve25519-windows\curve25519-windows.vcxproj", "{AF95F99E-B4BE-4FAB-B2D6-2B57870CE3DA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "curve25519-windows", "..\curve25519-windows\curve25519-windows.vcxproj", "{AF95F99E-B4BE-4FAB-B2D6-2B57870CE3DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "curve25519-test", "curve25519-test\curve25519-test.csproj", "{125B0049-EC1F-4B31-83B6-BB341AC9B75A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "curve25519-test", "..\curve25519-test\curve25519-test.csproj", "{125B0049-EC1F-4B31-83B6-BB341AC9B75A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libaxolotl-classlib", "libaxolotl-classlib\libaxolotl-classlib.csproj", "{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +21,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Debug|ARM.ActiveCfg = Debug|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Debug|x64.ActiveCfg = Debug|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Debug|x86.ActiveCfg = Debug|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Debug|x86.Build.0 = Debug|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Release|Any CPU.ActiveCfg = Release|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Release|ARM.ActiveCfg = Release|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Release|x64.ActiveCfg = Release|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Release|x86.ActiveCfg = Release|Win32
-		{EDF31496-4872-4B78-9F7A-C6EA9C06B46D}.Release|x86.Build.0 = Release|Win32
 		{AF95F99E-B4BE-4FAB-B2D6-2B57870CE3DA}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{AF95F99E-B4BE-4FAB-B2D6-2B57870CE3DA}.Debug|ARM.ActiveCfg = Debug|ARM
 		{AF95F99E-B4BE-4FAB-B2D6-2B57870CE3DA}.Debug|ARM.Build.0 = Debug|ARM
@@ -69,6 +59,22 @@ Global
 		{125B0049-EC1F-4B31-83B6-BB341AC9B75A}.Release|x86.ActiveCfg = Release|x86
 		{125B0049-EC1F-4B31-83B6-BB341AC9B75A}.Release|x86.Build.0 = Release|x86
 		{125B0049-EC1F-4B31-83B6-BB341AC9B75A}.Release|x86.Deploy.0 = Release|x86
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|ARM.ActiveCfg = Debug|ARM
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|ARM.Build.0 = Debug|ARM
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|x64.ActiveCfg = Debug|x64
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|x64.Build.0 = Debug|x64
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|x86.ActiveCfg = Debug|x86
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Debug|x86.Build.0 = Debug|x86
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|ARM.ActiveCfg = Release|ARM
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|ARM.Build.0 = Release|ARM
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x64.ActiveCfg = Release|x64
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x64.Build.0 = Release|x64
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x86.ActiveCfg = Release|x86
+		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

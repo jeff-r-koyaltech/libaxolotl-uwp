@@ -3,7 +3,7 @@
 #include "Curve25519_Internal.h" //curve25519_donna
 #include "ed25519\additions\curve_sigs.h" //curve25519_sign
 
-using namespace Curve25519WinRT;
+using namespace curve25519_windows;
 using namespace Platform;
 using namespace Windows::Storage::Streams;
 using namespace Windows::Security::Cryptography;

@@ -16,7 +16,7 @@ namespace Curve25519WinRT.WindowsPhone_Tests
 	public class JavaCompatibilityTests
 	{
 		#region Test helper code
-		private Curve25519WinRT.Curve25519Native curve25519;
+		private curve25519_windows.Curve25519Native curve25519;
 		private const int EXPECTED_LEN = 32;
 		private static byte[] GetRandomBuffer(int expectedLen)
 		{
@@ -28,7 +28,7 @@ namespace Curve25519WinRT.WindowsPhone_Tests
 		[TestInitialize]
 		public void Initialize()
 		{
-			curve25519 = new Curve25519WinRT.Curve25519Native();
+			curve25519 = new curve25519_windows.Curve25519Native();
 		}
 
 		[TestCleanup]
