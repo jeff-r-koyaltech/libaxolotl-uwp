@@ -7,13 +7,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "curve25519-windows", "curve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "curve25519-test", "curve25519-test\curve25519-test.csproj", "{125B0049-EC1F-4B31-83B6-BB341AC9B75A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libaxolotl-classlib", "libaxolotl-classlib\libaxolotl-classlib.csproj", "{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libaxolotl-csharp", "libaxolotl-csharp\libaxolotl-csharp.csproj", "{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2327B16E-B41C-4FD5-AEF6-BC86E78DFCA1}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libaxolotl-test", "libaxolotl-test\libaxolotl-test.csproj", "{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,30 @@ Global
 		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x64.Build.0 = Release|x64
 		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x86.ActiveCfg = Release|x86
 		{85B86F59-2FB8-4A42-8249-D7EF9964BAD5}.Release|x86.Build.0 = Release|x86
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|ARM.Build.0 = Debug|ARM
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|x64.ActiveCfg = Debug|x64
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|x64.Build.0 = Debug|x64
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|x64.Deploy.0 = Debug|x64
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|x86.ActiveCfg = Debug|x86
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|x86.Build.0 = Debug|x86
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Debug|x86.Deploy.0 = Debug|x86
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|ARM.ActiveCfg = Release|ARM
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|ARM.Build.0 = Release|ARM
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|ARM.Deploy.0 = Release|ARM
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|x64.ActiveCfg = Release|x64
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|x64.Build.0 = Release|x64
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|x64.Deploy.0 = Release|x64
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|x86.ActiveCfg = Release|x86
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|x86.Build.0 = Release|x86
+		{C4CE20CB-234D-459E-99B4-9CAD669BFCA5}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

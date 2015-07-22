@@ -69,56 +69,7 @@ namespace Curve25519WinRT.WindowsPhone_Tests
 			}
 			Assert.IsFalse(allZero, "A private key shouldn't be all zeroes.");
 		}
-
-		/// <summary>
-		/// Test for proper failures with too short or too long keys.
-		/// </summary>
-		[TestMethod]
-		public void TestGenPrivKeyFromRandom_FailureCases()
-		{
-			int tooShortLength = 13;
-			int tooLongLength = 128;
-			bool? excThrown = null;
-
-			#region Test too short
-			IBuffer randomIBuffer = CryptographicBuffer.GenerateRandom((uint)tooShortLength);
-			byte[] randomBuffer = WindowsRuntimeBufferExtensions.ToArray(randomIBuffer, 0, tooShortLength);
-			excThrown = null;
-			try
-			{
-				byte[] privKeyBytes = curve25519.generatePrivateKey(randomBuffer);
-				excThrown = false;
-			}
-			catch (Exception)
-			{
-				excThrown = true;
-			}
-			if (excThrown != true)
-			{
-				Assert.Fail("We should not allow keys that are too short.");
-			}
-			#endregion
-
-			#region Test too long
-			randomIBuffer = CryptographicBuffer.GenerateRandom((uint)tooLongLength);
-			randomBuffer = WindowsRuntimeBufferExtensions.ToArray(randomIBuffer, 0, tooLongLength);
-			excThrown = null;
-			try
-			{
-				byte[] privKeyBytes = curve25519.generatePrivateKey(randomBuffer);
-				excThrown = false;
-			}
-			catch (Exception)
-			{
-				excThrown = true;
-			}
-			if (excThrown != true)
-			{
-				Assert.Fail("We should not allow keys that are too long.");
-			}
-			#endregion
-		}
-
+		
 		/// <summary>
 		/// Test that we can make public keys from arbitrary private keys.
 		/// </summary>

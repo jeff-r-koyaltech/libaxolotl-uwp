@@ -80,10 +80,10 @@ Array<uint8>^ Curve25519Native::generatePrivateKey()
 
 Array<uint8>^ Curve25519Native::generatePrivateKey(const Array<uint8>^ random)
 {
-	if (random->Length != CURVE25519_PRIV_KEY_LEN)
+	/*if (random->Length != CURVE25519_PRIV_KEY_LEN)
 	{
 		throw ref new Exception(NTE_BAD_LEN, CURVE25519_PRIV_KEY_LEN_ERR_MSG);
-	}
+	}*/
 
 	Array<uint8>^ privateKey = ref new Array<uint8>(CURVE25519_PRIV_KEY_LEN);
 	for (int i = 0; i < CURVE25519_PRIV_KEY_LEN; i++)
