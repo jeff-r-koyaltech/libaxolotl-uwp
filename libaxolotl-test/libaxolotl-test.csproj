@@ -115,7 +115,9 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainKeyTests.cs" />
     <Compile Include="CurveTests.cs" />
+    <Compile Include="HKDFTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicTests.cs" />
   </ItemGroup>
