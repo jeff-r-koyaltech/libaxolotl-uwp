@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libaxolotl", "libaxolotl\li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libaxolotl-test", "libaxolotl-test\libaxolotl-test.csproj", "{753064DB-A48F-4486-9628-CA6528BC6039}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9E519B6B-7B00-488E-A690-FC9264BB24BB}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\Build.bat = deploy\Build.bat
+		deploy\nuget\libaxolotl.nuspec = deploy\nuget\libaxolotl.nuspec
+		deploy\nuget\libaxolotl.targets = deploy\nuget\libaxolotl.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
