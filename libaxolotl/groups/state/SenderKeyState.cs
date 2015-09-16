@@ -18,6 +18,7 @@ namespace libaxolotl.groups.state
      */
     public class SenderKeyState
     {
+        private static readonly int MAX_MESSAGE_KEYS = 2000;
 
         private SenderKeyStateStructure senderKeyStateStructure;
 
@@ -114,9 +115,16 @@ namespace libaxolotl.groups.state
                                                         .SetSeed(ByteString.CopyFrom(senderMessageKey.getSeed()))
                                                         .Build();
 
-            this.senderKeyStateStructure = this.senderKeyStateStructure.ToBuilder()
-                                                                       .AddSenderMessageKeys(senderMessageKeyStructure)
-                                                                       .Build();
+            SenderKeyStateStructure.Builder builder = this.senderKeyStateStructure.ToBuilder();
+
+            builder.AddSenderMessageKeys(senderMessageKeyStructure);
+
+            if (builder.SenderMessageKeysList.Count > MAX_MESSAGE_KEYS)
+            {
+                builder.SenderMessageKeysList.RemoveAt(0);
+            }
+
+            this.senderKeyStateStructure = builder.Build();
         }
 
         public SenderMessageKey removeSenderMessageKey(uint iteration)

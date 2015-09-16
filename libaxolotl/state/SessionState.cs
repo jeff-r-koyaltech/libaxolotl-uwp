@@ -17,6 +17,7 @@ namespace libaxolotl.state
 {
     public class SessionState
     {
+        private static readonly int MAX_MESSAGE_KEYS = 2000;
 
         private SessionStructure sessionStructure;
 
@@ -344,12 +345,16 @@ namespace libaxolotl.state
                                                                       .SetIv(ByteString.CopyFrom(messageKeys.getIv()/*.getIV()*/))
                                                                       .Build();
 
-            Chain updatedChain = chain.ToBuilder()
-                                      .AddMessageKeys(messageKeyStructure)
-                                      .Build();
+            Chain.Builder updatedChain = chain.ToBuilder().AddMessageKeys(messageKeyStructure);
+
+            if (updatedChain.MessageKeysList.Count > MAX_MESSAGE_KEYS)
+            {
+                updatedChain.MessageKeysList.RemoveAt(0);
+            }
 
             this.sessionStructure = this.sessionStructure.ToBuilder()
-                                                         .SetReceiverChains((int)chainAndIndex.second(), updatedChain) // TODO: conv
+                                                         .SetReceiverChains((int)chainAndIndex.second(),
+                                                                            updatedChain.Build())
                                                          .Build();
         }
 
