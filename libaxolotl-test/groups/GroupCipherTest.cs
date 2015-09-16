@@ -261,6 +261,45 @@ namespace libaxolotl_test.groups
             }
         }
 
+        [TestMethod]
+        public void testMessageKeyLimit()
+        {
+            InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
+            InMemorySenderKeyStore bobStore = new InMemorySenderKeyStore();
+
+            GroupSessionBuilder aliceSessionBuilder = new GroupSessionBuilder(aliceStore);
+            GroupSessionBuilder bobSessionBuilder = new GroupSessionBuilder(bobStore);
+
+            SenderKeyName aliceName = GROUP_SENDER;
+
+            GroupCipher aliceGroupCipher = new GroupCipher(aliceStore, aliceName);
+            GroupCipher bobGroupCipher = new GroupCipher(bobStore, aliceName);
+
+            SenderKeyDistributionMessage aliceDistributionMessage = aliceSessionBuilder.create(aliceName);
+
+            bobSessionBuilder.process(aliceName, aliceDistributionMessage);
+
+            List<byte[]> inflight = new List<byte[]>();
+
+            for (int i = 0; i < 2010; i++)
+            {
+                inflight.Add(aliceGroupCipher.encrypt(Encoding.UTF8.GetBytes("up the punks")));
+            }
+
+            bobGroupCipher.decrypt(inflight[1000]);
+            bobGroupCipher.decrypt(inflight[inflight.Count - 1]);
+
+            try
+            {
+                bobGroupCipher.decrypt(inflight[0]);
+                throw new Exception("Should have failed!");
+            }
+            catch (DuplicateMessageException e)
+            {
+                // good
+            }
+        }
+
         private uint randomUInt()
         {
             byte[] randomBytes;

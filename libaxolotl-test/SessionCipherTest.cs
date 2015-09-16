@@ -34,6 +34,44 @@ namespace libaxolotl_test
             runInteraction(aliceSessionRecord, bobSessionRecord);
         }
 
+        [TestMethod]
+        public void testMessageKeyLimits()
+        {
+            SessionRecord aliceSessionRecord = new SessionRecord();
+            SessionRecord bobSessionRecord = new SessionRecord();
+
+            initializeSessionsV3(aliceSessionRecord.getSessionState(), bobSessionRecord.getSessionState());
+
+            AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
+            AxolotlStore bobStore = new TestInMemoryAxolotlStore();
+
+            aliceStore.storeSession(new AxolotlAddress("+14159999999", 1), aliceSessionRecord);
+            bobStore.storeSession(new AxolotlAddress("+14158888888", 1), bobSessionRecord);
+
+            SessionCipher aliceCipher = new SessionCipher(aliceStore, new AxolotlAddress("+14159999999", 1));
+            SessionCipher bobCipher = new SessionCipher(bobStore, new AxolotlAddress("+14158888888", 1));
+
+            List<CiphertextMessage> inflight = new List<CiphertextMessage>();
+
+            for (int i = 0; i < 2010; i++)
+            {
+                inflight.Add(aliceCipher.encrypt(Encoding.UTF8.GetBytes("you've never been so hungry, you've never been so cold")));
+            }
+
+            bobCipher.decrypt(new WhisperMessage(inflight[1000].serialize()));
+            bobCipher.decrypt(new WhisperMessage(inflight[inflight.Count - 1].serialize()));
+
+            try
+            {
+                bobCipher.decrypt(new WhisperMessage(inflight[0].serialize()));
+                throw new Exception("Should have failed!");
+            }
+            catch (DuplicateMessageException dme)
+            {
+                // good
+            }
+        }
+
         private void runInteraction(SessionRecord aliceSessionRecord, SessionRecord bobSessionRecord)
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
