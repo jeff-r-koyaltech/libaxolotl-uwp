@@ -6,7 +6,7 @@ namespace libaxolotl_test
     [TestClass]
     public class HKDFTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.kdf")]
         public void testVectorV3()
         {
             byte[] ikm =
@@ -48,7 +48,7 @@ namespace libaxolotl_test
             CollectionAssert.AreEqual(okm, actualOutput);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.kdf")]
         public void testVectorLongV3()
         {
             byte[] ikm =
@@ -136,7 +136,7 @@ namespace libaxolotl_test
             CollectionAssert.AreEqual(okm, actualOutput);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.kdf")]
         public void testVectorV2()
         {
             byte[] ikm =

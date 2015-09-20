@@ -16,7 +16,7 @@ namespace libaxolotl_test.groups
         private static readonly AxolotlAddress SENDER_ADDRESS = new AxolotlAddress("+14150001111", 1);
         private static readonly SenderKeyName GROUP_SENDER = new SenderKeyName("nihilist history reading group", SENDER_ADDRESS);
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testNoSession()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -45,7 +45,7 @@ namespace libaxolotl_test.groups
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testBasicEncryptDecrypt()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -67,7 +67,7 @@ namespace libaxolotl_test.groups
             Assert.AreEqual("smert ze smert", Encoding.UTF8.GetString(plaintextFromAlice));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testLargeMessages()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -92,7 +92,7 @@ namespace libaxolotl_test.groups
             CollectionAssert.AreEqual(plaintext, plaintextFromAlice);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testBasicRatchet()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -137,7 +137,7 @@ namespace libaxolotl_test.groups
             Assert.AreEqual("smert ze smert3", Encoding.UTF8.GetString(plaintextFromAlice3));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testLateJoin()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -173,7 +173,7 @@ namespace libaxolotl_test.groups
             Assert.AreEqual("welcome to the group", Encoding.UTF8.GetString(plaintext));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testOutOfOrder()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -210,7 +210,7 @@ namespace libaxolotl_test.groups
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testEncryptNoSession()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -226,7 +226,7 @@ namespace libaxolotl_test.groups
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testTooFarInFuture()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
@@ -261,7 +261,7 @@ namespace libaxolotl_test.groups
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.groups")]
         public void testMessageKeyLimit()
         {
             InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();

@@ -14,7 +14,7 @@ namespace libaxolotl_test
     [TestClass]
     public class SessionCipherTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBasicSessionV2()
         {
             SessionRecord aliceSessionRecord = new SessionRecord();
@@ -24,7 +24,7 @@ namespace libaxolotl_test
             runInteraction(aliceSessionRecord, bobSessionRecord);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBasicSessionV3()
         {
             SessionRecord aliceSessionRecord = new SessionRecord();
@@ -34,7 +34,7 @@ namespace libaxolotl_test
             runInteraction(aliceSessionRecord, bobSessionRecord);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testMessageKeyLimits()
         {
             SessionRecord aliceSessionRecord = new SessionRecord();

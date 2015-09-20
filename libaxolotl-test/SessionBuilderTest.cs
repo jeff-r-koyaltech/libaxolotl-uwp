@@ -36,7 +36,7 @@ namespace libaxolotl_test
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBasicPreKeyV2()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -122,7 +122,7 @@ namespace libaxolotl_test
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBasicPreKeyV3()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -218,7 +218,7 @@ namespace libaxolotl_test
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBadSignedPreKeySignature()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -263,7 +263,7 @@ namespace libaxolotl_test
             aliceSessionBuilder.process(bobPreKey2);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testRepeatBundleMessageV2()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -318,7 +318,7 @@ namespace libaxolotl_test
 
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testRepeatBundleMessageV3()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -374,7 +374,7 @@ namespace libaxolotl_test
 
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBadMessageBundle()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -432,7 +432,7 @@ namespace libaxolotl_test
             Assert.IsFalse(bobStore.containsPreKey(31337));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBasicKeyExchange()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -478,7 +478,7 @@ namespace libaxolotl_test
             runInteraction(aliceStore, bobStore);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testSimultaneousKeyExchange()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -508,7 +508,7 @@ namespace libaxolotl_test
             runInteraction(aliceStore, bobStore);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testOptionalOneTimePreKey()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();

@@ -22,7 +22,7 @@ namespace libaxolotl_test
         private static readonly uint aliceSignedPreKeyId = (uint)new Random().Next((int)Medium.MAX_VALUE);
         private static readonly uint bobSignedPreKeyId = (uint)new Random().Next((int)Medium.MAX_VALUE);
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testBasicSimultaneousInitiate()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -78,7 +78,7 @@ namespace libaxolotl_test
             Assert.IsTrue(isSessionIdEqual(aliceStore, bobStore));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testLostSimultaneousInitiate()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -128,7 +128,7 @@ namespace libaxolotl_test
             Assert.IsTrue(isSessionIdEqual(aliceStore, bobStore));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testSimultaneousInitiateLostMessage()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -185,7 +185,7 @@ namespace libaxolotl_test
             Assert.IsTrue(isSessionIdEqual(aliceStore, bobStore));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testSimultaneousInitiateRepeatedMessages()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -260,7 +260,7 @@ namespace libaxolotl_test
             Assert.IsTrue(isSessionIdEqual(aliceStore, bobStore));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testRepeatedSimultaneousInitiateRepeatedMessages()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();
@@ -339,7 +339,7 @@ namespace libaxolotl_test
             Assert.IsTrue(isSessionIdEqual(aliceStore, bobStore));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl")]
         public void testRepeatedSimultaneousInitiateLostMessageRepeatedMessages()
         {
             AxolotlStore aliceStore = new TestInMemoryAxolotlStore();

@@ -7,7 +7,7 @@ namespace libaxolotl_test
     [TestClass]
     public class ChainKeyTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ratchet")]
         public void testChainKeyDerivationV2()
         {
             byte[] seed =
@@ -66,7 +66,7 @@ namespace libaxolotl_test
             Assert.AreEqual((uint)1, chainKey.getNextChainKey().getMessageKeys().getCounter());
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ratchet")]
         public void testChainKeyDerivationV3()
         {
             byte[] seed =

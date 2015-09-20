@@ -9,7 +9,7 @@ namespace libaxolotl_test
     [TestClass]
     public class RootKeyTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ratchet")]
         public void testRootKeyDerivationV2()
         {
             byte[] rootKeySeed =

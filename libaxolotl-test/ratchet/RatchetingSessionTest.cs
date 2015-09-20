@@ -10,7 +10,7 @@ namespace libaxolotl_test
     [TestClass]
     public class RatchetingSessionTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ratchet")]
         public void testRatchetingSessionAsBob()
         {
             byte[] bobPublic =
@@ -143,7 +143,7 @@ namespace libaxolotl_test
             CollectionAssert.AreEqual(session.getSenderChainKey().getKey(), senderChain);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ratchet")]
         public void testRatchetingSessionAsAlice()
         {
             byte[] bobPublic =

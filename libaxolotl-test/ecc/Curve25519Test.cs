@@ -7,7 +7,7 @@ namespace libaxolotl_test
     [TestClass]
     public class Curve25519Test
     {
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ecc")]
         public void testAgreement()
         {
 
@@ -79,7 +79,7 @@ namespace libaxolotl_test
             CollectionAssert.AreEqual(sharedTwo, shared);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ecc")]
         public void testRandomAgreements()
         {
             for (int i = 0; i < 50; i++)
@@ -94,7 +94,7 @@ namespace libaxolotl_test
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ecc")]
         public void testSignature()
         {
             byte[] aliceIdentityPrivate =
@@ -170,7 +170,7 @@ namespace libaxolotl_test
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("libaxolotl.ecc")]
         public void testSignatureOverflow()
         {
             ECKeyPair keys = Curve.generateKeyPair();
