@@ -155,17 +155,14 @@ namespace libaxolotl.groups
                 }
             }
 
-			//Avoiding a uint overflow
-			uint sckIteration = senderChainKey.getIteration();
-			if(sckIteration > iteration)
-			{
-				if (sckIteration - iteration > 2000)
-				{
-					throw new InvalidMessageException("Over 2000 messages into the future!");
-				}
-			}
+            //Avoiding a uint overflow
+            uint senderChainKeyIteration = senderChainKey.getIteration();
+            if ((iteration > senderChainKeyIteration) && (iteration - senderChainKeyIteration > 2000))
+            {
+                throw new InvalidMessageException("Over 2000 messages into the future!");
+            }
 
-			while (senderChainKey.getIteration() < iteration)
+            while (senderChainKey.getIteration() < iteration)
 			{
 				senderKeyState.addSenderMessageKey(senderChainKey.getSenderMessageKey());
 				senderChainKey = senderChainKey.getNext();

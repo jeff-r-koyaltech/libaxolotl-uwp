@@ -365,7 +365,9 @@ namespace libaxolotl
                 }
             }
 
-            if (counter - chainKey.getIndex() > 2000)
+            //Avoiding a uint overflow
+            uint chainKeyIndex = chainKey.getIndex();
+            if ((counter > chainKeyIndex) && (counter - chainKeyIndex > 2000))
             {
                 throw new InvalidMessageException("Over 2000 messages into the future!");
             }
