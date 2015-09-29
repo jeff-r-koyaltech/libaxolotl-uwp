@@ -61,11 +61,7 @@ namespace libaxolotl.state.impl
 
         public void storeSession(AxolotlAddress address, SessionRecord record)
         {
-            if (sessions.ContainsKey(address)) //mimic HashMap update behaviour
-            {
-                sessions.Remove(address);
-            }
-            sessions.Add(address, record.serialize()); // put
+            sessions[address] = record.serialize();
         }
 
 

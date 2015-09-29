@@ -33,11 +33,7 @@ namespace libaxolotl.state.impl
 
         public /*override*/ bool saveIdentity(String name, IdentityKey identityKey)
         {
-            if (trustedKeys.ContainsKey(name)) //mimic HashMap update behaviour
-            {
-                trustedKeys.Remove(name);
-            }
-            trustedKeys.Add(name, identityKey); // put
+            trustedKeys[name] = identityKey;
             return true;
         }
 

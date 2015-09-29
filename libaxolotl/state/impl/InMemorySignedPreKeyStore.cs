@@ -55,11 +55,7 @@ namespace libaxolotl.state.impl
 
         public void storeSignedPreKey(uint signedPreKeyId, SignedPreKeyRecord record)
         {
-            if (store.ContainsKey(signedPreKeyId)) // mimic Java HashMap
-            {
-                store.Remove(signedPreKeyId);
-            }
-            store.Add(signedPreKeyId, record.serialize());
+            store[signedPreKeyId] = record.serialize();
         }
 
 

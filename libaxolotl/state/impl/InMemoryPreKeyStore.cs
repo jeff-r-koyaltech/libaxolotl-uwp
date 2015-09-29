@@ -34,11 +34,7 @@ namespace libaxolotl.state.impl
 
         public void storePreKey(uint preKeyId, PreKeyRecord record)
         {
-            if (store.ContainsKey(preKeyId)) // mimic Java HashMap
-            {
-                store.Remove(preKeyId);
-            }
-            store.Add(preKeyId, record.serialize()); // put
+            store[preKeyId] = record.serialize();
         }
 
 
