@@ -1,4 +1,21 @@
-﻿using System;
+﻿/** 
+ * Copyright (C) 2015 smndtrl
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +25,16 @@ namespace libaxolotl.ecc
 {
     public class Curve
     {
-
-        public static readonly int BEST = 0x05;
         public const int DJB_TYPE = 0x05;
 
         public static bool isNative()
         {
-            return Curve25519.getInstance(BEST).isNative();
+            return Curve25519.getInstance(Curve25519ProviderType.BEST).isNative();
         }
 
         public static ECKeyPair generateKeyPair()
         {
-            Curve25519KeyPair keyPair = Curve25519.getInstance(BEST).generateKeyPair();
+            Curve25519KeyPair keyPair = Curve25519.getInstance(Curve25519ProviderType.BEST).generateKeyPair();
 
             return new ECKeyPair(new DjbECPublicKey(keyPair.getPublicKey()),
                                  new DjbECPrivateKey(keyPair.getPrivateKey()));
@@ -54,7 +69,7 @@ namespace libaxolotl.ecc
 
             if (publicKey.getType() == DJB_TYPE)
             {
-                return Curve25519.getInstance(BEST)
+                return Curve25519.getInstance(Curve25519ProviderType.BEST)
                                  .calculateAgreement(((DjbECPublicKey)publicKey).getPublicKey(),
                                                      ((DjbECPrivateKey)privateKey).getPrivateKey());
             }
@@ -68,7 +83,7 @@ namespace libaxolotl.ecc
         {
             if (signingKey.getType() == DJB_TYPE)
             {
-                return Curve25519.getInstance(BEST)
+                return Curve25519.getInstance(Curve25519ProviderType.BEST)
                                  .verifySignature(((DjbECPublicKey)signingKey).getPublicKey(), message, signature);
             }
             else
@@ -81,7 +96,7 @@ namespace libaxolotl.ecc
         {
             if (signingKey.getType() == DJB_TYPE)
             {
-                return Curve25519.getInstance(BEST)
+                return Curve25519.getInstance(Curve25519ProviderType.BEST)
                                  .calculateSignature(((DjbECPrivateKey)signingKey).getPrivateKey(), message);
             }
             else

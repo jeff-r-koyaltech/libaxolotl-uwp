@@ -1,5 +1,5 @@
 ﻿/** 
- * Copyright (C) 2015 smndtrl
+ * Copyright (C) 2015 langboost
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,22 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.ecc
+ 
+ namespace libaxolotl.ecc.impl
 {
-    public interface ECPublicKey : IComparable
-    {
-
-        //int KEY_SIZE = 33;
-
-        byte[] serialize();
-
-        int getType();
-    }
+	/// <summary>
+	/// If you want to expose an implementation of Curve25519 to this class library,
+	/// implement this interface.
+	/// </summary>
+	public interface ICurve25519Provider
+	{
+		byte[] calculateAgreement(byte[] ourPrivate, byte[] theirPublic);
+		byte[] calculateSignature(byte[] random, byte[] privateKey, byte[] message);
+		byte[] generatePrivateKey(byte[] random);
+		byte[] generatePublicKey(byte[] privateKey);
+		bool isNative();
+		bool verifySignature(byte[] publicKey, byte[] message, byte[] signature);
+	}
 }
