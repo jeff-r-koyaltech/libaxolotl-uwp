@@ -1,5 +1,5 @@
 # libaxolotl-windows
-An independent implementation of the axolotl protocol, loosely based on WhisperSystems/libaxolotl-java.
+An implementation of the axolotl protocol, based on WhisperSystems/libaxolotl-java.
 
 Depends on langboost/curve25519-uwp.
 

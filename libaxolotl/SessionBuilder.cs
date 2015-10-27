@@ -1,4 +1,21 @@
-﻿using libaxolotl.ecc;
+﻿/** 
+ * Copyright (C) 2015 smndtrl
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using libaxolotl.ecc;
 using libaxolotl.exceptions;
 using libaxolotl.protocol;
 using libaxolotl.ratchet;
@@ -92,9 +109,9 @@ namespace libaxolotl
 
             May<uint> unsignedPreKeyId;
 
-            if (!identityKeyStore.isTrustedIdentity(remoteAddress.getName(), theirIdentityKey))
+            if (!identityKeyStore.IsTrustedIdentity(remoteAddress.getName(), theirIdentityKey))
             {
-                throw new UntrustedIdentityException();
+                throw new UntrustedIdentityException(remoteAddress.getName(), theirIdentityKey);
             }
 
             switch (messageVersion)
@@ -104,7 +121,7 @@ namespace libaxolotl
                 default: throw new Exception("Unknown version: " + messageVersion);
             }
 
-            identityKeyStore.saveIdentity(remoteAddress.getName(), theirIdentityKey);
+            identityKeyStore.SaveIdentity(remoteAddress.getName(), theirIdentityKey);
             return unsignedPreKeyId;
         }
 
@@ -117,19 +134,19 @@ namespace libaxolotl
                 return May<uint>.NoValue;
             }
 
-            ECKeyPair ourSignedPreKey = signedPreKeyStore.loadSignedPreKey(message.getSignedPreKeyId()).getKeyPair();
+            ECKeyPair ourSignedPreKey = signedPreKeyStore.LoadSignedPreKey(message.getSignedPreKeyId()).getKeyPair();
 
             BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
 
             parameters.setTheirBaseKey(message.getBaseKey())
                       .setTheirIdentityKey(message.getIdentityKey())
-                      .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+                      .setOurIdentityKey(identityKeyStore.GetIdentityKeyPair())
                       .setOurSignedPreKey(ourSignedPreKey)
                       .setOurRatchetKey(ourSignedPreKey);
 
             if (message.getPreKeyId().HasValue)
             {
-                parameters.setOurOneTimePreKey(new May<ECKeyPair>(preKeyStore.loadPreKey(message.getPreKeyId().ForceGetValue()).getKeyPair()));
+                parameters.setOurOneTimePreKey(new May<ECKeyPair>(preKeyStore.LoadPreKey(message.getPreKeyId().ForceGetValue()).getKeyPair()));
             }
             else
             {
@@ -140,7 +157,7 @@ namespace libaxolotl
 
             RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
 
-            sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
+            sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.GetLocalRegistrationId());
             sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
             sessionRecord.getSessionState().setAliceBaseKey(message.getBaseKey().serialize());
 
@@ -161,18 +178,18 @@ namespace libaxolotl
                 throw new InvalidKeyIdException("V2 message requires one time prekey id!");
             }
 
-            if (!preKeyStore.containsPreKey(message.getPreKeyId().ForceGetValue()) &&
-                sessionStore.containsSession(remoteAddress))
+            if (!preKeyStore.ContainsPreKey(message.getPreKeyId().ForceGetValue()) &&
+                sessionStore.ContainsSession(remoteAddress))
             {
                 //Log.w(TAG, "We've already processed the prekey part of this V2 session, letting bundled message fall through...");
                 return May<uint>.NoValue; //May.absent();
             }
 
-            ECKeyPair ourPreKey = preKeyStore.loadPreKey(message.getPreKeyId().ForceGetValue()).getKeyPair();
+            ECKeyPair ourPreKey = preKeyStore.LoadPreKey(message.getPreKeyId().ForceGetValue()).getKeyPair();
 
             BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
 
-            parameters.setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+            parameters.setOurIdentityKey(identityKeyStore.GetIdentityKeyPair())
                           .setOurSignedPreKey(ourPreKey)
                           .setOurRatchetKey(ourPreKey)
                           .setOurOneTimePreKey(May<ECKeyPair>.NoValue) //absent
@@ -183,7 +200,7 @@ namespace libaxolotl
 
             RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
 
-            sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
+            sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.GetLocalRegistrationId());
             sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
             sessionRecord.getSessionState().setAliceBaseKey(message.getBaseKey().serialize());
 
@@ -212,9 +229,9 @@ namespace libaxolotl
         {
             lock (SessionCipher.SESSION_LOCK)
             {
-                if (!identityKeyStore.isTrustedIdentity(remoteAddress.getName(), preKey.getIdentityKey()))
+                if (!identityKeyStore.IsTrustedIdentity(remoteAddress.getName(), preKey.getIdentityKey()))
                 {
-                    throw new UntrustedIdentityException();
+                    throw new UntrustedIdentityException(remoteAddress.getName(), preKey.getIdentityKey());
                 }
 
                 if (preKey.getSignedPreKey() != null &&
@@ -231,7 +248,7 @@ namespace libaxolotl
                 }
 
                 bool supportsV3 = preKey.getSignedPreKey() != null;
-                SessionRecord sessionRecord = sessionStore.loadSession(remoteAddress);
+                SessionRecord sessionRecord = sessionStore.LoadSession(remoteAddress);
                 ECKeyPair ourBaseKey = Curve.generateKeyPair();
                 ECPublicKey theirSignedPreKey = supportsV3 ? preKey.getSignedPreKey() : preKey.getPreKey();
                 ECPublicKey test = preKey.getPreKey(); // TODO: cleanup
@@ -242,7 +259,7 @@ namespace libaxolotl
                 AliceAxolotlParameters.Builder parameters = AliceAxolotlParameters.newBuilder();
 
                 parameters.setOurBaseKey(ourBaseKey)
-                              .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+                              .setOurIdentityKey(identityKeyStore.GetIdentityKeyPair())
                               .setTheirIdentityKey(preKey.getIdentityKey())
                               .setTheirSignedPreKey(theirSignedPreKey)
                               .setTheirRatchetKey(theirSignedPreKey)
@@ -255,12 +272,12 @@ namespace libaxolotl
                                                     parameters.create());
 
                 sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(theirOneTimePreKeyId, preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
-                sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
+                sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.GetLocalRegistrationId());
                 sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
                 sessionRecord.getSessionState().setAliceBaseKey(ourBaseKey.getPublicKey().serialize());
 
-                sessionStore.storeSession(remoteAddress, sessionRecord);
-                identityKeyStore.saveIdentity(remoteAddress.getName(), preKey.getIdentityKey());
+                sessionStore.StoreSession(remoteAddress, sessionRecord);
+                identityKeyStore.SaveIdentity(remoteAddress.getName(), preKey.getIdentityKey());
             }
         }
 
@@ -277,9 +294,9 @@ namespace libaxolotl
         {
             lock (SessionCipher.SESSION_LOCK)
             {
-                if (!identityKeyStore.isTrustedIdentity(remoteAddress.getName(), message.getIdentityKey()))
+                if (!identityKeyStore.IsTrustedIdentity(remoteAddress.getName(), message.getIdentityKey()))
                 {
-                    throw new UntrustedIdentityException();
+                    throw new UntrustedIdentityException(remoteAddress.getName(), message.getIdentityKey());
                 }
 
                 KeyExchangeMessage responseMessage = null;
@@ -294,7 +311,7 @@ namespace libaxolotl
         private KeyExchangeMessage processInitiate(KeyExchangeMessage message)
         {
             uint flags = KeyExchangeMessage.RESPONSE_FLAG;
-            SessionRecord sessionRecord = sessionStore.loadSession(remoteAddress);
+            SessionRecord sessionRecord = sessionStore.LoadSession(remoteAddress);
 
             if (message.getVersion() >= 3 &&
                 !Curve.verifySignature(message.getIdentityKey().getPublicKey(),
@@ -308,7 +325,7 @@ namespace libaxolotl
 
             if (!sessionRecord.getSessionState().hasPendingKeyExchange())
             {
-                builder.setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+                builder.setOurIdentityKey(identityKeyStore.GetIdentityKeyPair())
                        .setOurBaseKey(Curve.generateKeyPair())
                        .setOurRatchetKey(Curve.generateKeyPair());
             }
@@ -332,8 +349,8 @@ namespace libaxolotl
                                                 Math.Min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
                                                 parameters);
 
-            sessionStore.storeSession(remoteAddress, sessionRecord);
-            identityKeyStore.saveIdentity(remoteAddress.getName(), message.getIdentityKey());
+            sessionStore.StoreSession(remoteAddress, sessionRecord);
+            identityKeyStore.SaveIdentity(remoteAddress.getName(), message.getIdentityKey());
 
             byte[] baseKeySignature = Curve.calculateSignature(parameters.getOurIdentityKey().getPrivateKey(),
                                                                parameters.getOurBaseKey().getPublicKey().serialize());
@@ -347,7 +364,7 @@ namespace libaxolotl
 
         private void processResponse(KeyExchangeMessage message)
         {
-            SessionRecord sessionRecord = sessionStore.loadSession(remoteAddress);
+            SessionRecord sessionRecord = sessionStore.LoadSession(remoteAddress);
             SessionState sessionState = sessionRecord.getSessionState();
             bool hasPendingKeyExchange = sessionState.hasPendingKeyExchange();
             bool isSimultaneousInitiateResponse = message.isResponseForSimultaneousInitiate();
@@ -382,8 +399,8 @@ namespace libaxolotl
                 throw new InvalidKeyException("Base key signature doesn't match!");
             }
 
-            sessionStore.storeSession(remoteAddress, sessionRecord);
-            identityKeyStore.saveIdentity(remoteAddress.getName(), message.getIdentityKey());
+            sessionStore.StoreSession(remoteAddress, sessionRecord);
+            identityKeyStore.SaveIdentity(remoteAddress.getName(), message.getIdentityKey());
 
         }
 
@@ -402,12 +419,12 @@ namespace libaxolotl
                     uint flags = KeyExchangeMessage.INITIATE_FLAG;
                     ECKeyPair baseKey = Curve.generateKeyPair();
                     ECKeyPair ratchetKey = Curve.generateKeyPair();
-                    IdentityKeyPair identityKey = identityKeyStore.getIdentityKeyPair();
+                    IdentityKeyPair identityKey = identityKeyStore.GetIdentityKeyPair();
                     byte[] baseKeySignature = Curve.calculateSignature(identityKey.getPrivateKey(), baseKey.getPublicKey().serialize());
-                    SessionRecord sessionRecord = sessionStore.loadSession(remoteAddress);
+                    SessionRecord sessionRecord = sessionStore.LoadSession(remoteAddress);
 
                     sessionRecord.getSessionState().setPendingKeyExchange(sequence, baseKey, ratchetKey, identityKey);
-                    sessionStore.storeSession(remoteAddress, sessionRecord);
+                    sessionStore.StoreSession(remoteAddress, sessionRecord);
 
                     return new KeyExchangeMessage(2, sequence, flags, baseKey.getPublicKey(), baseKeySignature,
                                                   ratchetKey.getPublicKey(), identityKey.getPublicKey());

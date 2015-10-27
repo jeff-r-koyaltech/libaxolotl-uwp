@@ -1,4 +1,21 @@
-﻿using System;
+﻿/** 
+ * Copyright (C) 2015 smndtrl
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +44,41 @@ namespace libaxolotl.util
             CryptographicBuffer.CopyToByteArray(buffHMAC, out hmac);
 
             return hmac;
+        }
+    }
+
+    public class Sha256
+    {
+        public static byte[] Sign(byte[] key, byte[] message)
+        {
+            MacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithmNames.HmacSha256);
+
+            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
+            CryptographicKey hmacKey = provider.CreateKey(buffKey);
+
+            IBuffer buffMessage = CryptographicBuffer.CreateFromByteArray(message);
+
+            IBuffer buffHMAC = CryptographicEngine.Sign(hmacKey, buffMessage);
+
+            byte[] hmac;
+
+            CryptographicBuffer.CopyToByteArray(buffHMAC, out hmac);
+
+            return hmac;
+        }
+
+        public static bool Verify(byte[] key, byte[] message, byte[] signature)
+        {
+            MacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithmNames.HmacSha256);
+
+            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
+            CryptographicKey hmacKey = provider.CreateKey(buffKey);
+
+            IBuffer buffMessage = CryptographicBuffer.CreateFromByteArray(message);
+
+            IBuffer buffSignature = CryptographicBuffer.CreateFromByteArray(signature);
+
+            return CryptographicEngine.VerifySignature(hmacKey, buffMessage, buffSignature);
         }
     }
 
@@ -77,6 +129,8 @@ namespace libaxolotl.util
             SymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.AesCbcPkcs7);
             IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
             CryptographicKey ckey = objAlg.CreateSymmetricKey(buffKey);
+
+            if (message.Length % objAlg.BlockLength != 0) throw new Exception("Invalid ciphertext length");
 
 
             IBuffer buffPlaintext = CryptographicBuffer.CreateFromByteArray(message);

@@ -1,4 +1,21 @@
-﻿using libaxolotl;
+﻿/** 
+ * Copyright (C) 2015 smndtrl
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using libaxolotl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +46,7 @@ namespace libaxolotl.state
          * @return a copy of the SessionRecord corresponding to the recipientId + deviceId tuple, or
          *         a new SessionRecord if one does not currently exist.
          */
-        SessionRecord loadSession(AxolotlAddress address);
+        SessionRecord LoadSession(AxolotlAddress address);
 
         /**
          * Returns all known devices with active sessions for a recipient
@@ -37,35 +54,35 @@ namespace libaxolotl.state
          * @param name the name of the client.
          * @return all known sub-devices with active sessions.
          */
-        List<uint> getSubDeviceSessions(String name);
+        List<uint> GetSubDeviceSessions(String name);
 
         /**
          * Commit to storage the {@link SessionRecord} for a given recipientId + deviceId tuple.
          * @param address the address of the remote client.
          * @param record the current SessionRecord for the remote client.
          */
-        void storeSession(AxolotlAddress address, SessionRecord record);
+        void StoreSession(AxolotlAddress address, SessionRecord record);
 
         /**
          * Determine whether there is a committed {@link SessionRecord} for a recipientId + deviceId tuple.
          * @param address the address of the remote client.
          * @return true if a {@link SessionRecord} exists, false otherwise.
          */
-         bool containsSession(AxolotlAddress address);
+         bool ContainsSession(AxolotlAddress address);
 
         /**
          * Remove a {@link SessionRecord} for a recipientId + deviceId tuple.
          *
          * @param address the address of the remote client.
          */
-         void deleteSession(AxolotlAddress address);
+         void DeleteSession(AxolotlAddress address);
 
         /**
          * Remove the {@link SessionRecord}s corresponding to all devices of a recipientId.
          *
          * @param name the name of the remote client.
          */
-        void deleteAllSessions(String name);
+        void DeleteAllSessions(String name);
 
     }
 }

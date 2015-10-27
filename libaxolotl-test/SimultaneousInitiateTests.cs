@@ -54,8 +54,8 @@ namespace libaxolotl_test
             Assert.AreEqual("sample message", Encoding.UTF8.GetString(alicePlaintext));
             Assert.AreEqual("hey there", Encoding.UTF8.GetString(bobPlaintext));
 
-            Assert.AreEqual((uint)3, aliceStore.loadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
-            Assert.AreEqual((uint)3, bobStore.loadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, aliceStore.LoadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
 
             Assert.IsFalse(isSessionIdEqual(aliceStore, bobStore));
 
@@ -107,7 +107,7 @@ namespace libaxolotl_test
             byte[] bobPlaintext = bobSessionCipher.decrypt(new PreKeyWhisperMessage(messageForBob.serialize()));
 
             Assert.AreEqual("hey there", Encoding.UTF8.GetString(bobPlaintext));
-            Assert.AreEqual((uint)3, bobStore.loadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
 
             CiphertextMessage aliceResponse = aliceSessionCipher.encrypt(Encoding.UTF8.GetBytes("second message"));
 
@@ -160,8 +160,8 @@ namespace libaxolotl_test
             Assert.AreEqual("sample message", Encoding.UTF8.GetString(alicePlaintext));
             Assert.AreEqual("hey there", Encoding.UTF8.GetString(bobPlaintext));
 
-            Assert.AreEqual((uint)3, aliceStore.loadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
-            Assert.AreEqual((uint)3, bobStore.loadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, aliceStore.LoadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
 
             Assert.IsFalse(isSessionIdEqual(aliceStore, bobStore));
 
@@ -217,8 +217,8 @@ namespace libaxolotl_test
             Assert.AreEqual("sample message", Encoding.UTF8.GetString(alicePlaintext));
             Assert.AreEqual("hey there", Encoding.UTF8.GetString(bobPlaintext));
 
-            Assert.AreEqual((uint)3, aliceStore.loadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
-            Assert.AreEqual((uint)3, bobStore.loadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, aliceStore.LoadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
+            Assert.AreEqual((uint)3, bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
 
             Assert.IsFalse(isSessionIdEqual(aliceStore, bobStore));
 
@@ -295,8 +295,8 @@ namespace libaxolotl_test
                 Assert.AreEqual("sample message", Encoding.UTF8.GetString(alicePlaintext));
                 Assert.AreEqual("hey there", Encoding.UTF8.GetString(bobPlaintext));
 
-                Assert.AreEqual((uint)3, aliceStore.loadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
-                Assert.AreEqual((uint)3, bobStore.loadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
+                Assert.AreEqual((uint)3, aliceStore.LoadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
+                Assert.AreEqual((uint)3, bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
 
                 Assert.IsFalse(isSessionIdEqual(aliceStore, bobStore));
             }
@@ -383,8 +383,8 @@ namespace libaxolotl_test
                 Assert.AreEqual("sample message", Encoding.UTF8.GetString(alicePlaintext));
                 Assert.AreEqual("hey there", Encoding.UTF8.GetString(bobPlaintext));
 
-                Assert.AreEqual((uint)3, aliceStore.loadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
-                Assert.AreEqual((uint)3, bobStore.loadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
+                Assert.AreEqual((uint)3, aliceStore.LoadSession(BOB_ADDRESS).getSessionState().getSessionVersion());
+                Assert.AreEqual((uint)3, bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getSessionVersion());
 
                 Assert.IsFalse(isSessionIdEqual(aliceStore, bobStore));
             }
@@ -440,24 +440,24 @@ namespace libaxolotl_test
 
         private bool isSessionIdEqual(AxolotlStore aliceStore, AxolotlStore bobStore)
         {
-            return Enumerable.SequenceEqual(aliceStore.loadSession(BOB_ADDRESS).getSessionState().getAliceBaseKey(),
-                                            bobStore.loadSession(ALICE_ADDRESS).getSessionState().getAliceBaseKey());
+            return Enumerable.SequenceEqual(aliceStore.LoadSession(BOB_ADDRESS).getSessionState().getAliceBaseKey(),
+                                            bobStore.LoadSession(ALICE_ADDRESS).getSessionState().getAliceBaseKey());
         }
 
         private PreKeyBundle createAlicePreKeyBundle(AxolotlStore aliceStore)
         {
             ECKeyPair aliceUnsignedPreKey = Curve.generateKeyPair();
             uint aliceUnsignedPreKeyId = (uint)new Random().Next((int)Medium.MAX_VALUE);
-            byte[] aliceSignature = Curve.calculateSignature(aliceStore.getIdentityKeyPair().getPrivateKey(),
+            byte[] aliceSignature = Curve.calculateSignature(aliceStore.GetIdentityKeyPair().getPrivateKey(),
                                                                        aliceSignedPreKey.getPublicKey().serialize());
 
             PreKeyBundle alicePreKeyBundle = new PreKeyBundle(1, 1,
                                                               aliceUnsignedPreKeyId, aliceUnsignedPreKey.getPublicKey(),
                                                               aliceSignedPreKeyId, aliceSignedPreKey.getPublicKey(),
-                                                              aliceSignature, aliceStore.getIdentityKeyPair().getPublicKey());
+                                                              aliceSignature, aliceStore.GetIdentityKeyPair().getPublicKey());
 
-            aliceStore.storeSignedPreKey(aliceSignedPreKeyId, new SignedPreKeyRecord(aliceSignedPreKeyId, DateUtil.currentTimeMillis(), aliceSignedPreKey, aliceSignature));
-            aliceStore.storePreKey(aliceUnsignedPreKeyId, new PreKeyRecord(aliceUnsignedPreKeyId, aliceUnsignedPreKey));
+            aliceStore.StoreSignedPreKey(aliceSignedPreKeyId, new SignedPreKeyRecord(aliceSignedPreKeyId, DateUtil.currentTimeMillis(), aliceSignedPreKey, aliceSignature));
+            aliceStore.StorePreKey(aliceUnsignedPreKeyId, new PreKeyRecord(aliceUnsignedPreKeyId, aliceUnsignedPreKey));
 
             return alicePreKeyBundle;
         }
@@ -466,16 +466,16 @@ namespace libaxolotl_test
         {
             ECKeyPair bobUnsignedPreKey = Curve.generateKeyPair();
             uint bobUnsignedPreKeyId = (uint)new Random().Next((int)Medium.MAX_VALUE);
-            byte[] bobSignature = Curve.calculateSignature(bobStore.getIdentityKeyPair().getPrivateKey(),
+            byte[] bobSignature = Curve.calculateSignature(bobStore.GetIdentityKeyPair().getPrivateKey(),
                                                                      bobSignedPreKey.getPublicKey().serialize());
 
             PreKeyBundle bobPreKeyBundle = new PreKeyBundle(1, 1,
                                                         bobUnsignedPreKeyId, bobUnsignedPreKey.getPublicKey(),
                                                         bobSignedPreKeyId, bobSignedPreKey.getPublicKey(),
-                                                        bobSignature, bobStore.getIdentityKeyPair().getPublicKey());
+                                                        bobSignature, bobStore.GetIdentityKeyPair().getPublicKey());
 
-            bobStore.storeSignedPreKey(bobSignedPreKeyId, new SignedPreKeyRecord(bobSignedPreKeyId, DateUtil.currentTimeMillis(), bobSignedPreKey, bobSignature));
-            bobStore.storePreKey(bobUnsignedPreKeyId, new PreKeyRecord(bobUnsignedPreKeyId, bobUnsignedPreKey));
+            bobStore.StoreSignedPreKey(bobSignedPreKeyId, new SignedPreKeyRecord(bobSignedPreKeyId, DateUtil.currentTimeMillis(), bobSignedPreKey, bobSignature));
+            bobStore.StorePreKey(bobUnsignedPreKeyId, new PreKeyRecord(bobUnsignedPreKeyId, bobUnsignedPreKey));
 
             return bobPreKeyBundle;
         }

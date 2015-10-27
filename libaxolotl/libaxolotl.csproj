@@ -121,6 +121,8 @@
     <Compile Include="ecc\ECKeyPair.cs" />
     <Compile Include="ecc\ECPrivateKey.cs" />
     <Compile Include="ecc\ECPublicKey.cs" />
+    <Compile Include="ecc\impl\ICurve25519Provider.cs" />
+    <Compile Include="ecc\impl\Curve25519NativeProvider.cs" />
     <Compile Include="groups\GroupCipher.cs" />
     <Compile Include="groups\GroupSessionBuilder.cs" />
     <Compile Include="groups\ratchet\SenderChainKey.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="util\KeyHelper.cs" />
     <Compile Include="util\Medium.cs" />
     <Compile Include="util\Pair.cs" />
+    <Content Include="Properties\libaxolotl.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

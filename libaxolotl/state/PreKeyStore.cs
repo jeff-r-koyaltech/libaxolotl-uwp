@@ -1,4 +1,21 @@
-﻿using libaxolotl.state;
+﻿/** 
+ * Copyright (C) 2015 smndtrl
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using libaxolotl.state;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +39,7 @@ namespace libaxolotl.state
          * @return the corresponding PreKeyRecord.
          * @throws InvalidKeyIdException when there is no corresponding PreKeyRecord.
          */
-        PreKeyRecord loadPreKey(uint preKeyId);
+        PreKeyRecord LoadPreKey(uint preKeyId);
 
         /**
          * Store a local PreKeyRecord.
@@ -30,20 +47,20 @@ namespace libaxolotl.state
          * @param preKeyId the ID of the PreKeyRecord to store.
          * @param record the PreKeyRecord.
          */
-        void storePreKey(uint preKeyId, PreKeyRecord record);
+        void StorePreKey(uint preKeyId, PreKeyRecord record);
 
         /**
          * @param preKeyId A PreKeyRecord ID.
          * @return true if the store has a record for the preKeyId, otherwise false.
          */
-         bool containsPreKey(uint preKeyId);
+         bool ContainsPreKey(uint preKeyId);
 
         /**
          * Delete a PreKeyRecord from local storage.
          *
          * @param preKeyId The ID of the PreKeyRecord to remove.
          */
-        void removePreKey(uint preKeyId);
+        void RemovePreKey(uint preKeyId);
 
     }
 }
