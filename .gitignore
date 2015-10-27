@@ -25,11 +25,13 @@ bld/
 # Deploy folder NuGet packaging
 deploy/staging/
 
-#VS has some weird lock file. Ignore that.
+#Ignore VS lock file
 project.lock.json
 
 # Visual Studo 2015 cache/options directory
 .vs/
+# Roslyn cache directories
+*.ide/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
