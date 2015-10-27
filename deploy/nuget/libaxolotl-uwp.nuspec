@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>libaxolotl-uwp</id>
+		<version>1.0.1</version>
+		<title>libaxolotl-uwp</title>
+		<authors>langboost</authors>
+		<owners>langboost</owners>
+		<licenseUrl>https://github.com/langboost/libaxolotl-uwp/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/langboost/libaxolotl-uwp</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/langboost/libaxolotl-uwp/master/NuGetIcon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>libaxolotl implementation in C#, based on libaxolotl-java.</description>
+		<releaseNotes>Updating to 1.0.1 to accomodate package changes for our curve25519-uwp dependency.</releaseNotes>
+		<copyright>Copyright 2015</copyright>
+		<tags>axolotl textsecure</tags>
+		<dependencies>
+			<dependency id="curve25519-uwp" version="1.0.4" />
+		</dependencies>
+	</metadata>
+	<files>
+		<!-- dll, pri, and xml to lib folder -->
+		<file src="..\staging\lib\uap10.0\*.*" target="lib\uap10.0" />
+	</files>
+</package>

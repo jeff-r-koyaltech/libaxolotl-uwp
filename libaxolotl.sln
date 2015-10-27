@@ -10,50 +10,25 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9E519B6B-7B00-488E-A690-FC9264BB24BB}"
 	ProjectSection(SolutionItems) = preProject
 		deploy\Build.bat = deploy\Build.bat
-		deploy\nuget\libaxolotl.nuspec = deploy\nuget\libaxolotl.nuspec
-		deploy\nuget\libaxolotl.targets = deploy\nuget\libaxolotl.targets
+		deploy\nuget\libaxolotl-uwp.nuspec = deploy\nuget\libaxolotl-uwp.nuspec
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|ARM = Debug|ARM
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|ARM = Release|ARM
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|ARM.ActiveCfg = Debug|ARM
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|ARM.Build.0 = Debug|ARM
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|x64.ActiveCfg = Debug|x64
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|x64.Build.0 = Debug|x64
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|x86.ActiveCfg = Debug|x86
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|x86.Build.0 = Debug|x86
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|ARM.ActiveCfg = Release|ARM
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|ARM.Build.0 = Release|ARM
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|x64.ActiveCfg = Release|x64
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|x64.Build.0 = Release|x64
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|x86.ActiveCfg = Release|x86
-		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|x86.Build.0 = Release|x86
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|ARM.ActiveCfg = Debug|ARM
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|ARM.Build.0 = Debug|ARM
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|ARM.Deploy.0 = Debug|ARM
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|x64.ActiveCfg = Debug|x64
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|x64.Build.0 = Debug|x64
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|x64.Deploy.0 = Debug|x64
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|x86.ActiveCfg = Debug|x86
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|x86.Build.0 = Debug|x86
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|x86.Deploy.0 = Debug|x86
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|ARM.ActiveCfg = Release|ARM
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|ARM.Build.0 = Release|ARM
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|ARM.Deploy.0 = Release|ARM
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|x64.ActiveCfg = Release|x64
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|x64.Build.0 = Release|x64
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|x64.Deploy.0 = Release|x64
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|x86.ActiveCfg = Release|x86
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|x86.Build.0 = Release|x86
-		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|x86.Deploy.0 = Release|x86
+		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EAA4CF-8789-43EE-A216-A50522303C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EAA4CF-8789-43EE-A216-A50522303C92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|Any CPU.Build.0 = Debug|x64
+		{753064DB-A48F-4486-9628-CA6528BC6039}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|Any CPU.ActiveCfg = Release|x64
+		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|Any CPU.Build.0 = Release|x64
+		{753064DB-A48F-4486-9628-CA6528BC6039}.Release|Any CPU.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
