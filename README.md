@@ -1,6 +1,9 @@
 # libaxolotl-windows
 An implementation of the axolotl protocol, based on WhisperSystems/libaxolotl-java.
 
-Depends on langboost/curve25519-uwp.
+Depends on langboost/curve25519-uwp, Google Protocol Buffers, and Strilanc.May.
 
-This implementation benefited greatly from Github user smndtrl on the actual implementation. There are still features to port, so pull requests are welcome.
+A very basic sample implementation can be found here:
+https://github.com/langboost/axolotl-sample-client
+
+The sample implementation simply proves the concept, and allows someone to step through the Axolotl protocol as it ratchets, encrypts, decrypts, etc.
