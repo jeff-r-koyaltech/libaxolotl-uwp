@@ -22,12 +22,14 @@ REM ======================= build =======================================
 REM Build out staging NuGet folder structure
 mkdir %StagingPath%
 mkdir %StagingPath%\lib\uap10.0
+mkdir %StagingPath%\lib\uap10.0\libaxolotl\Properties
 
 
 REM build Any CPU
 %MSBuildPath% libaxolotl\libaxolotl.csproj /property:Configuration=Release /property:Platform="AnyCPU"
 REM stage Any CPU (dll, pri, xml)
 copy libaxolotl\bin\Release\libaxolotl.* %StagingPath%\lib\uap10.0
+copy libaxolotl\Properties\*.rd.xml %StagingPath%\lib\uap10.0\libaxolotl\Properties
 
 REM create NuGet package
 pushd deploy\staging
