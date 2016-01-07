@@ -186,6 +186,7 @@
     <Compile Include="util\Medium.cs" />
     <Compile Include="util\Pair.cs" />
     <Content Include="Properties\libaxolotl.rd.xml" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
