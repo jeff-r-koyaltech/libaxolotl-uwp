@@ -1,3 +1,11 @@
+# Wait...deprecated!
+You are probably looking for this instead:
+https://github.com/langboost/libsignal-protocol-pcl
+
+This will work on Xamarin, all current versions of .NET, etc.
+
+If you want just "modern" .NET support, you can still use this repository. But I'm not planning to maintain it since it's just as easy to use a PCL instead of a UWP library.
+
 # libaxolotl-windows
 An implementation of the axolotl protocol, based on WhisperSystems/libaxolotl-java.
 
